@@ -8,31 +8,25 @@
 pkgname="spl-dkms"
 pkgdesc="Solaris Porting Layer kernel modules."
 
-pkgver=0.7.5
-pkgrel=2
+pkgver=0.7.6
+pkgrel=1
 makedepends=("git")
 arch=("x86_64")
 url="http://zfsonlinux.org/"
-source=("https://github.com/zfsonlinux/zfs/releases/download/zfs-0.7.5/spl-0.7.5.tar.gz"
+source=("https://github.com/zfsonlinux/zfs/releases/download/zfs-0.7.6/spl-0.7.6.tar.gz"
         "60-spl-dkms-install.hook"
-        "spl-dkms-alpm-hook"
-        "0001-Linux-4.15-compat-timer-updates.patch")
-sha256sums=("c4845d9a6123397c53ee003ed1712f2996a50ac2a9a30d1490280771484d08a6"
+        "spl-dkms-alpm-hook")
+sha256sums=("648148762969d1ee94290c494c4f022aeacabe0e84cddf65906af608be666f95"
             "15f71a9ceccf795cdac65743bee338e9987ec77e217721f32d55099be6ecf3d7"
-            "836002f310b9e1d4b1a0e5c30d5b0ac5aa120d335b3ea223228a0b9f037ef8b8"
-            "3c882c05ef76200e60713541ecfcac8b17fd043e85c35ebb453e9a47bfb13278")
+            "836002f310b9e1d4b1a0e5c30d5b0ac5aa120d335b3ea223228a0b9f037ef8b8")
 license=("GPL")
-depends=("spl-utils-common=0.7.5" "dkms")
+depends=("spl-utils-common=0.7.6" "dkms")
 provides=("spl")
 groups=("archzfs-dkms")
 conflicts=('spl-dkms-git' 'spl-archiso-linux' 'spl-archiso-linux-git' 'spl-linux-hardened' 'spl-linux-hardened-git' 'spl-linux-lts' 'spl-linux-lts-git' 'spl-linux' 'spl-linux-git' 'spl-linux-vfio' 'spl-linux-vfio-git' 'spl-linux-zen' 'spl-linux-zen-git'  )
-prepare() {
-    cd "${srcdir}/spl-0.7.5"
-    patch -Np1 -i ${srcdir}/0001-Linux-4.15-compat-timer-updates.patch
-}
 
 build() {
-    cd "${srcdir}/spl-0.7.5"
+    cd "${srcdir}/spl-0.7.6"
     ./autogen.sh
 }
 
@@ -40,11 +34,11 @@ package() {
     # install alpm hook
     install -D -m 644 ${srcdir}/60-spl-dkms-install.hook ${pkgdir}/usr/share/libalpm/hooks/60-spl-dkms-install.hook
     install -D -m 755 ${srcdir}/spl-dkms-alpm-hook ${pkgdir}/usr/lib/dkms/spl-dkms-alpm-hook
-    dkmsdir="${pkgdir}/usr/src/spl-0.7.5"
+    dkmsdir="${pkgdir}/usr/src/spl-0.7.6"
     install -d "${dkmsdir}"
-    cp -a ${srcdir}/spl-0.7.5/. ${dkmsdir}
+    cp -a ${srcdir}/spl-0.7.6/. ${dkmsdir}
     cd "${dkmsdir}"
     find . -name ".git*" -print0 | xargs -0 rm -fr --
-    scripts/dkms.mkconf -v 0.7.5 -f dkms.conf -n spl
+    scripts/dkms.mkconf -v 0.7.6 -f dkms.conf -n spl
     chmod g-w,o-w -R .
 }
