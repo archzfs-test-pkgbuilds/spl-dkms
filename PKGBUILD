@@ -13,7 +13,7 @@ pkgrel=3
 makedepends=()
 arch=("x86_64")
 url="http://zfsonlinux.org/"
-source=("https://github.com/zfsonlinux/zfs/releases/download/zfs-0.7.9/spl-0.7.9.tar.gz"
+source=("https://github.com/zfsonlinux/zfs/releases/download/zfs-${pkgver}/spl-${pkgver}.tar.gz"
         "60-spl-dkms-install.hook"
         "spl-dkms-alpm-hook"
         "upstream-eb1f893-Linux-4.18-compat-inode-timespec_timespec64.patch")
@@ -22,17 +22,17 @@ sha256sums=("49832e446a5abce0b55ba245c9b5f94959604d44378320fdffae0233bf1e8c00"
             "836002f310b9e1d4b1a0e5c30d5b0ac5aa120d335b3ea223228a0b9f037ef8b8"
             "72d1b4103c0b52e0fc2b7135485e346c898289ab42f7bc1ae2748d072a360f66")
 license=("GPL")
-depends=("spl-utils-common=0.7.9" "dkms")
+depends=("spl-utils-common=${pkgver}" "dkms")
 provides=("spl")
 groups=("archzfs-dkms")
 conflicts=('spl-dkms-git' 'spl-archiso-linux' 'spl-archiso-linux-git' 'spl-linux-hardened' 'spl-linux-hardened-git' 'spl-linux-lts' 'spl-linux-lts-git' 'spl-linux' 'spl-linux-git' 'spl-linux-vfio' 'spl-linux-vfio-git' 'spl-linux-zen' 'spl-linux-zen-git'  )
 prepare() {
-    cd "${srcdir}/spl-0.7.9"
+    cd "${srcdir}/spl-${pkgver}"
     patch -Np1 -i ${srcdir}/upstream-eb1f893-Linux-4.18-compat-inode-timespec_timespec64.patch
 }
 
 build() {
-    cd "${srcdir}/spl-0.7.9"
+    cd "${srcdir}/spl-${pkgver}"
     ./autogen.sh
 }
 
@@ -42,7 +42,7 @@ package() {
     install -D -m 755 ${srcdir}/spl-dkms-alpm-hook ${pkgdir}/usr/lib/dkms/spl-dkms-alpm-hook
     dkmsdir="${pkgdir}/usr/src/spl-0.7.9"
     install -d "${dkmsdir}"
-    cp -a ${srcdir}/spl-0.7.9/. ${dkmsdir}
+    cp -a ${srcdir}/spl-${pkgver}/. ${dkmsdir}
     cd "${dkmsdir}"
     find . -name ".git*" -print0 | xargs -0 rm -fr --
     scripts/dkms.mkconf -v 0.7.9 -f dkms.conf -n spl
