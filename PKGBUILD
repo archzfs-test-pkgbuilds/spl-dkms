@@ -13,10 +13,8 @@ pkgrel=1
 makedepends=()
 arch=("x86_64")
 url="http://zfsonlinux.org/"
-source=("https://github.com/zfsonlinux/zfs/releases/download/zfs-${pkgver}/spl-${pkgver}.tar.gz"
-        "60-spl-dkms-install.hook")
-sha256sums=("9647e0fe9f19cd99746da3cc48b8de8903a66dacdccc82b45dbbb516606f4ff8"
-            "15f71a9ceccf795cdac65743bee338e9987ec77e217721f32d55099be6ecf3d7")
+source=("https://github.com/zfsonlinux/zfs/releases/download/zfs-${pkgver}/spl-${pkgver}.tar.gz")
+sha256sums=("9647e0fe9f19cd99746da3cc48b8de8903a66dacdccc82b45dbbb516606f4ff8")
 license=("GPL")
 depends=("spl-utils-common=${pkgver}" "dkms")
 provides=("spl")
@@ -29,8 +27,6 @@ build() {
 }
 
 package() {
-    # install alpm hook
-    install -D -m 644 ${srcdir}/60-spl-dkms-install.hook ${pkgdir}/usr/share/libalpm/hooks/60-spl-dkms-install.hook
     dkmsdir="${pkgdir}/usr/src/spl-0.7.10"
     install -d "${dkmsdir}"
     cp -a ${srcdir}/spl-${pkgver}/. ${dkmsdir}

@@ -23,9 +23,7 @@ pkgbase = spl-dkms
 	conflicts = spl-linux-zen
 	conflicts = spl-linux-zen-git
 	source = https://github.com/zfsonlinux/zfs/releases/download/zfs-0.7.10/spl-0.7.10.tar.gz
-	source = 60-spl-dkms-install.hook
 	sha256sums = 9647e0fe9f19cd99746da3cc48b8de8903a66dacdccc82b45dbbb516606f4ff8
-	sha256sums = 15f71a9ceccf795cdac65743bee338e9987ec77e217721f32d55099be6ecf3d7
 
 pkgname = spl-dkms
 
