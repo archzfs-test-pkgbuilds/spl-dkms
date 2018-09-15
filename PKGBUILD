@@ -8,13 +8,13 @@
 pkgname="spl-dkms"
 pkgdesc="Solaris Porting Layer kernel modules."
 
-pkgver=0.7.10
+pkgver=0.7.11
 pkgrel=1
 makedepends=()
 arch=("x86_64")
 url="http://zfsonlinux.org/"
 source=("https://github.com/zfsonlinux/zfs/releases/download/zfs-${pkgver}/spl-${pkgver}.tar.gz")
-sha256sums=("9647e0fe9f19cd99746da3cc48b8de8903a66dacdccc82b45dbbb516606f4ff8")
+sha256sums=("d6ddd225e7f464007c960f10134c8a48fb0de525f75ad05d5ddf36685b1ced67")
 license=("GPL")
 depends=("spl-utils-common=${pkgver}" "dkms")
 provides=("spl")
@@ -27,11 +27,11 @@ build() {
 }
 
 package() {
-    dkmsdir="${pkgdir}/usr/src/spl-0.7.10"
+    dkmsdir="${pkgdir}/usr/src/spl-${pkgver}"
     install -d "${dkmsdir}"
     cp -a ${srcdir}/spl-${pkgver}/. ${dkmsdir}
     cd "${dkmsdir}"
     find . -name ".git*" -print0 | xargs -0 rm -fr --
-    scripts/dkms.mkconf -v 0.7.10 -f dkms.conf -n spl
+    scripts/dkms.mkconf -v ${pkgver} -f dkms.conf -n spl
     chmod g-w,o-w -R .
 }
