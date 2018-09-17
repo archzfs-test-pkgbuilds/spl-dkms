@@ -17,9 +17,9 @@ source=("https://github.com/zfsonlinux/zfs/releases/download/zfs-${pkgver}/spl-$
 sha256sums=("d6ddd225e7f464007c960f10134c8a48fb0de525f75ad05d5ddf36685b1ced67")
 license=("GPL")
 depends=("spl-utils-common=${pkgver}" "dkms")
-provides=("spl")
+provides=("spl" "spl-headers")
 groups=("archzfs-dkms")
-conflicts=('spl-dkms-git' 'spl-archiso-linux' 'spl-archiso-linux-git' 'spl-linux-hardened' 'spl-linux-hardened-git' 'spl-linux-lts' 'spl-linux-lts-git' 'spl-linux' 'spl-linux-git' 'spl-linux-vfio' 'spl-linux-vfio-git' 'spl-linux-zen' 'spl-linux-zen-git'  )
+conflicts=("spl" "spl-headers")
 
 build() {
     cd "${srcdir}/spl-${pkgver}"
