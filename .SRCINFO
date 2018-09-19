@@ -9,19 +9,9 @@ pkgbase = spl-dkms
 	depends = spl-utils-common=0.7.11
 	depends = dkms
 	provides = spl
-	conflicts = spl-dkms-git
-	conflicts = spl-archiso-linux
-	conflicts = spl-archiso-linux-git
-	conflicts = spl-linux-hardened
-	conflicts = spl-linux-hardened-git
-	conflicts = spl-linux-lts
-	conflicts = spl-linux-lts-git
-	conflicts = spl-linux
-	conflicts = spl-linux-git
-	conflicts = spl-linux-vfio
-	conflicts = spl-linux-vfio-git
-	conflicts = spl-linux-zen
-	conflicts = spl-linux-zen-git
+	provides = spl-headers
+	conflicts = spl
+	conflicts = spl-headers
 	source = https://github.com/zfsonlinux/zfs/releases/download/zfs-0.7.11/spl-0.7.11.tar.gz
 	sha256sums = d6ddd225e7f464007c960f10134c8a48fb0de525f75ad05d5ddf36685b1ced67
 
