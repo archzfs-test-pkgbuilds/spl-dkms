@@ -8,13 +8,13 @@
 pkgname="spl-dkms"
 pkgdesc="Solaris Porting Layer kernel modules."
 
-pkgver=0.7.11
-pkgrel=3
+pkgver=0.7.12
+pkgrel=1
 makedepends=()
 arch=("x86_64")
 url="http://zfsonlinux.org/"
 source=("https://github.com/zfsonlinux/zfs/releases/download/zfs-${pkgver}/spl-${pkgver}.tar.gz")
-sha256sums=("d6ddd225e7f464007c960f10134c8a48fb0de525f75ad05d5ddf36685b1ced67")
+sha256sums=("4709a06e913bbbeb634161a8b68c3f879e5b6040c6c0c09b1f51042b3178c274")
 license=("GPL")
 depends=("dkms")
 provides=("spl" "spl-headers")
