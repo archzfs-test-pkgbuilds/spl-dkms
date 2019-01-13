@@ -9,7 +9,7 @@ pkgname="spl-dkms"
 pkgdesc="Solaris Porting Layer kernel modules."
 
 pkgver=0.7.12
-pkgrel=1
+pkgrel=2
 makedepends=()
 arch=("x86_64")
 url="http://zfsonlinux.org/"
